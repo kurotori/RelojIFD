@@ -1,0 +1,58 @@
+@startuml RelojIFD-CasosDeUso
+    skinparam actorStyle awesome
+
+
+    :Funcionario: as funcionario
+    :Usuario: as usuario
+    
+    package Registro{
+        (Recepción de Firma) as firmas
+        (Confirmación de Firma) as confirmarFirma
+        (Error de Firma) as errFirma
+    }
+    
+    package Administración{
+        (Login) as login
+        (Error de Login) as errLogin
+        (Principal) as principal
+        (Administrar Funcionarios) as adminFuncionarios
+        (Administrar Horarios) as adminHorarios
+        (Generar Informes) as genInformes
+        (Logout) as logout
+        (Crear Funcionario) as crearFuncionario
+        (Modificar Funcionario) as modFuncionario
+        (Crear Horario) as crearHorario
+        (Modificar Horario) as modHorario
+    }
+    
+    
+    funcionario --> firmas:Registra su firma
+    
+    firmas --> confirmarFirma:Registro exitoso
+    confirmarFirma --> firmas
+
+    firmas --> errFirma:Error durante la firma
+    errFirma --> firmas
+
+    usuario --> login: Realiza
+    login --> errLogin: Error de login
+    errLogin --> login
+    login --> principal: Login exitoso
+    principal --> adminFuncionarios
+    adminFuncionarios --> principal
+    adminFuncionarios --> adminHorarios
+    adminHorarios --> adminFuncionarios
+    principal --> genInformes
+    genInformes --> principal
+    principal --> logout
+    logout --> login
+    adminFuncionarios --> modFuncionario
+    modFuncionario --> adminFuncionarios
+    adminFuncionarios --> crearFuncionario
+    crearFuncionario --> adminFuncionarios
+    adminHorarios --> crearHorario
+    crearHorario --> adminHorarios
+    adminHorarios --> modHorario
+    modHorario --> adminHorarios
+
+@enduml

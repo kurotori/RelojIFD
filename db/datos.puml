@@ -1,0 +1,28 @@
+@startuml RelojIFD
+    entity funcionario{
+        *ci:int 
+        nombre:varchar:40
+        apellido:varchar:40
+    }
+
+    entity horario{
+        *id:int
+        dia:enum:"Lu","Ma","Mi","Ju","Vi"
+        horaInicio:time
+        horaFin:time
+        tipo:enum
+    }
+
+    entity firma{
+        *id:int
+        tipo:enum:"entrada","salida"
+    }
+
+    entity tiene{}
+    entity realiza{}
+
+    funcionario "1" --> realiza
+    realiza --> "n" firma
+    funcionario "1" --> tiene
+    tiene --> "n" horario
+@enduml
