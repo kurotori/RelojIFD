@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFD de Melo:Registro de Registro de Asistencia de Funcionarios</title>
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/firmas.css">
+</head>
+<body class="fondo1" onload="document.form_firma.ci.focus()">
+    <div class="columna" id="zona_reloj">
+        <div class="fila" id="reloj_titulo">
+            <h1>Registro de Asistencias</h1>
+        </div>
+        <div class="fila" id="div_reloj">
+            <h2 id="fecha">12:12:12</h2>
+            <h2 id="hora">12:12:12</h2>
+        </div>
+        <div class="fila" id="div_formFirma">
+            <form name="form_firma" id="form_firma" onkeydown="return event.key != 'Enter';">
+                <br>
+                <input type="number" id="ci" name="ci">
+            </form>
+        </div>
+        <div class="fila" id="mensajes">
+            <h3 id="mensajeEstado">algo algo</h3>
+            <h4 id="mensajeTexto">bla bla bla</h4>
+        </div>
+    </div>
+    <div class="columna" id="zona_logo"></div>
+</body>
+</html>
+<script src="../../js/funciones.js"></script>
+<script src="../../js/firma.js"></script>

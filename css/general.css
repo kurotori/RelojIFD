@@ -4,3 +4,19 @@ html, body{
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.fila{
+    position: relative;
+    width: 100%;
+}
+
+.columna{
+    position: relative;
+    float: left;
+    height: 100%;
+}
+
+.fondo1{
+    background: rgb(255,255,255);
+    background: linear-gradient( rgba(0,196,255,1),rgba(255,255,255,1));
+}

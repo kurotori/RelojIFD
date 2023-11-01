@@ -16,6 +16,7 @@
     entity firma{
         *id:int
         tipo:enum:"entrada","salida"
+        fechahora:datetime
     }
 
     entity tiene{}
