@@ -8,12 +8,14 @@
 
     //2 - Si los datos recibidos NO son vacíos, procedemos a validarlos
     if ( ! empty($datos) ) {
-        $datos = json_decode($datos, true);
+        $datos = json_decode($datos);
     }
     else {
         $datos = new stdClass;
         $datos->cosa="algo";
     }
+
+    $bdd = new SQLite3("../db/reloj.db");
 
     respuestaJSON($datos);
 

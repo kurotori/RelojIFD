@@ -2,7 +2,7 @@ const formFirma = document.getElementById("form_firma")
 const divReloj = document.getElementById("div_reloj")
 const h2Fecha = document.getElementById("fecha")
 const h2Hora = document.getElementById("hora")
-
+const urlFirma = "http://localhost:3000/api/firmar.php"
 
 reloj(divReloj)
 
@@ -15,11 +15,20 @@ formFirma.addEventListener("keydown",(ev)=>{
     }
 })
 
+
+
 function prueba() {
     funcionario.ci = formFirma["ci"].value
     console.log(funcionario)
     formFirma["ci"].value = ""
+
+    enviarAlServidor(funcionario,urlFirma).
+    then(res=>{
+        console.log(res)
+    })
 }
+
+
 
 function reloj() {
     const hoy = new Date();
@@ -42,4 +51,16 @@ function reloj() {
   function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
+  }
+
+
+
+  function recortarTextoInput(input,limite) {
+    if (input.value.length>8) {
+        input.value=input.value.slice(0,limite)
+    }
+  }
+
+  function limitarInputCI() {
+    recortarTextoInput(formFirma["ci"],8)
   }

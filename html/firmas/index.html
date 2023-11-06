@@ -17,9 +17,10 @@
             <h2 id="hora">12:12:12</h2>
         </div>
         <div class="fila" id="div_formFirma">
-            <form name="form_firma" id="form_firma" onkeydown="return event.key != 'Enter';">
+            <form name="form_firma" id="form_firma" autocomplete="off" onkeydown="return event.key != 'Enter';">
                 <br>
-                <input type="number" id="ci" name="ci">
+                <input type="hidden" name="" autocomplete="false" >
+                <input type="number" id="ci" name="ci" maxlength="8" oninput="limitarInputCI()">
             </form>
         </div>
         <div class="fila" id="mensajes">
