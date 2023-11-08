@@ -1,0 +1,26 @@
+@startuml Ejecución
+    start
+        :Recibir CI del funcionario;
+        
+        if (CI registrada en el sistema) then (SI)
+            :Búsqueda de última firma;
+            if (Hay Última Firma) then (SI)
+                :Nueva Firma es entrada;
+            else (NO)
+                if (Última firma es 'entrada') then (SI)
+                    :Nueva Firma es 'salida';
+                else (NO)
+                    :Nueva Firma es 'entrada';
+                endif
+                :Obtener ID de Última Firma **del sistema**;
+                :ID de Nueva Firma = ID de Última Firma+1;
+                :Registrar Nueva Firma;
+                :Vincular Nueva Firma a CI de funcionario;
+            endif
+        else (NO)
+            :ERROR: CI no registrada;
+        endif
+        :Mostrar Resultado\n(Nueva Firma o Error);
+    stop
+
+@enduml

@@ -19,3 +19,15 @@ insert into realiza
 (funcionario_ci,firma_id)
 VALUES
 (1234578,1);
+
+SELECT
+(SELECT firma.tipo from firma
+where firma.id = firma_id) as tipo,
+(SELECT firma.fechahora from firma
+where firma.id = firma_id) as "Tiempo"
+FROM realiza
+WHERE 
+funcionario_ci = 1234578
+order by 2 DESC
+LIMIT 1
+;

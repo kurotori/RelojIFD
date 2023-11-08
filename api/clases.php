@@ -15,5 +15,10 @@ class Firma
 
 }
 
+class respuesta
+{
+    public $estado;
+    public $datos;
+}
 
 ?>
