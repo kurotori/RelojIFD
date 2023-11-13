@@ -2,6 +2,10 @@ const formFirma = document.getElementById("form_firma")
 const divReloj = document.getElementById("div_reloj")
 const h2Fecha = document.getElementById("fecha")
 const h2Hora = document.getElementById("hora")
+
+const h3mensajeEstado = document.getElementById("mensajeEstado")
+const h4mensajeTexto = document.getElementById("mensajeTexto")
+
 const urlFirma = "http://localhost:3000/api/firmar.php"
 
 reloj(divReloj)
@@ -25,6 +29,17 @@ function prueba() {
     enviarAlServidor(funcionario,urlFirma).
     then(res=>{
         console.log(res)
+        if (res.respuesta.estado=="ERROR") {
+          h3mensajeEstado.innerText = res.respuesta.estado
+          switch (res.respuesta.datos) {
+            case "E1":
+              h4mensajeTexto.innerText = "La CI ingresada ("+funcionario.ci+") no existe en el sistema"
+              break;
+          
+            default:
+              break;
+          }
+        }
     })
 }
 

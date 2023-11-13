@@ -31,3 +31,6 @@ funcionario_ci = 1234578
 order by 2 DESC
 LIMIT 1
 ;
+
+SELECT count(id) as firmas from firma 
+where date(fechahora) = date();

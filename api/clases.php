@@ -12,6 +12,7 @@ class Firma
     public $id;
     public $fechahora;
     public $tipo;
+    public $id_ant = 0;
 
 }
 

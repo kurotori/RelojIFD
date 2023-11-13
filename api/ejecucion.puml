@@ -3,14 +3,15 @@
         :Recibir CI del funcionario;
         
         if (CI registrada en el sistema) then (SI)
-            :Búsqueda de última firma;
-            if (Hay Última Firma) then (SI)
+            :Búsqueda de las firmas realizadas \n**en el día**;
+            :Búsqueda de última firma\n**del funcionario**\n entre las **firmas del día**;
+            if (Hay Última Firma) then (NO)
                 :Nueva Firma es entrada;
-            else (NO)
-                if (Última firma es 'entrada') then (SI)
-                    :Nueva Firma es 'salida';
+            else (SI)
+                if (Última firma es **'entrada'**) then (SI)
+                    :Nueva Firma es **'salida'**;
                 else (NO)
-                    :Nueva Firma es 'entrada';
+                    :Nueva Firma es **'entrada'**;
                 endif
                 :Obtener ID de Última Firma **del sistema**;
                 :ID de Nueva Firma = ID de Última Firma+1;
