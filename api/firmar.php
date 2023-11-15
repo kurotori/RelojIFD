@@ -1,44 +1,24 @@
 <?php 
     include_once "clases.php";
     include_once "funciones.php";
+    include_once "consultas.php";
 
-    // CONSULTAS
-    $consultaUltFirmaFunc = "SELECT
-    (SELECT firma.tipo from firma
-    where firma.id = firma_id) as 'tipo',
-    (SELECT firma.id from firma
-    where firma.id = firma_id) as 'id',
-    (SELECT firma.fechahora from firma
-    where firma.id = firma_id) as 'fechahora'
-    FROM realiza
-    WHERE 
-    funcionario_ci = :ci
-    order by 3 DESC
-    LIMIT 1;";
-
-    $consultaUltFirmaSis = "SELECT 
-    id+1 from firma
-    order by id DESC
-    LIMIT 1;";
-
-    $consultaFuncExiste = "SELECT count(*) as conteo from funcionario
-    where ci=:ci;";
-
-    $consultaFirmasDeHoy = "SELECT id from firma 
-    where date(fechahora) = date();";
-    // --- --- --- --- --- --- --- --- --- --- --- --- --- 
+    
 
     $datos = file_get_contents('php://input');
     $respuesta = new Respuesta();
     
+    //Recibir CI
     if ( ! empty($datos) ) {
         $datosJSON = json_decode($datos);
 
         $ci_funcionario = $datosJSON->ci;
         //var_dump($ci_funcionario);
 
+        //Inicializar BDD
         $bdd = new SQLite3("../db/reloj.db");
 
+        //Buscar la CI del funcionario
         $sentencia = $bdd->prepare($consultaFuncExiste);
         $sentencia->bindValue(":ci",$ci_funcionario,SQLITE3_INTEGER);
         $resultado = $sentencia->execute();
@@ -49,37 +29,53 @@
 
         };
 
-            if ($cantU == 1) {
+        //Si el funcionario existe...
+        if ($cantU == 1) {
 
-                $respuesta->estado = "OK";
-                $respuesta->datos = "El usuario existe";
-                
+            $respuesta->estado = "OK";
+            $respuesta->datos = "El usuario existe";
+            
+            //Preparación de la firma nueva
+            $firmaAnt = new Firma;
+            $firmaAnt->id = 0;
+
+            $firmaNueva = new Firma;
+            $firmaNueva->tipo = "entrada";
+
+            //Se buscan las últimas firmas del usuario en el día
+            $sentencia = $bdd->prepare($consultaConteoFirmasFunc);
+            $sentencia->bindValue(":ci",$ci_funcionario,SQLITE3_INTEGER);
+            $resultado = $sentencia->execute();
+
+            $cantF=0;
+            while ($datos_r = $resultado->fetchArray(SQLITE3_ASSOC)) {
+                $cantF = $datos_r["conteo"];
+            };
+
+            //Si el usuario ya ha realizado firmas en el día, chequeamos el tipo de la última
+            if ($cantF > 0) {
                 $sentencia = $bdd->prepare($consultaUltFirmaFunc);
                 $sentencia->bindValue(":ci",$ci_funcionario,SQLITE3_INTEGER);
                 $resultado = $sentencia->execute();
-                
-                $firmaAnt = new Firma;
-                $firmaAnt->id = 0;
-
-                $firmaNueva = new Firma;
-                $firmaNueva->tipo = "entrada";
-
-                while ($datos_r = $resultado->fetchArray(SQLITE3_ASSOC)) {
-                    $firmaAnt->tipo = $datos_r["tipo"];
-                    $firmaAnt->id = $datos_r["id"];
-                };
-
-                if (strcmp($firmaAnt->tipo,"entrada")) {
-                    # code...
-                } else {
-                    # code...
-                }
-                
-
-            } else {
-                $respuesta->estado = "ERROR";
-                $respuesta->datos = "E1";
             }
+            
+
+            while ($datos_r = $resultado->fetchArray(SQLITE3_ASSOC)) {
+                $firmaAnt->tipo = $datos_r["tipo"];
+                $firmaAnt->id = $datos_r["id"];
+            };
+
+            if (strcmp($firmaAnt->tipo,"entrada")) {
+                # code...
+            } else {
+                # code...
+            }
+            
+
+        } else {
+            $respuesta->estado = "ERROR";
+            $respuesta->datos = "E1";
+        }
  /**
   * ERRORES:
   *  E1: Cédula no registrada

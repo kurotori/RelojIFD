@@ -40,6 +40,11 @@ function prueba() {
               break;
           }
         }
+        //Limpiar mensajes y dejar el sistema pronto para una nueva firma
+        setTimeout(()=>{
+          h3mensajeEstado.innerText="Hola"
+          h4mensajeTexto.innerText="Ingrese su CI sin puntos ni espacios"
+        },4000)
     })
 }
 
@@ -79,3 +84,5 @@ function reloj() {
   function limitarInputCI() {
     recortarTextoInput(formFirma["ci"],8)
   }
+
+  
