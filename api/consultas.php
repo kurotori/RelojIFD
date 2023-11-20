@@ -32,8 +32,14 @@ funcionario_ci = :ci
 AND
 firma_id IN
 (SELECT id from firma 
-where date(fechahora) = date())
-LIMIT 1;";
+where date(fechahora) = date()
+);";
+
+/**
+ * Consulta: Datos del funcionario
+ */
+
+ $consultaDatosFuncionario="SELECT ci,nombre,apellido from funcionario where ci=:ci;";
 
 /**
  * Consulta: Obtiene la ID de la SIGUIENTE firma en el sistema
@@ -54,5 +60,28 @@ where ci=:ci;";
  */
 $consultaFirmasDeHoy = "SELECT id from firma 
 where date(fechahora) = date();";
+
+
+
+/**
+ * Consulta: Ingresar firma al sistema
+ */
+$consultaInsertarFirma = "INSERT into firma(tipo,fechahora,id_anterior)
+values (:tipo, :fechahora, :id_anterior)
+";
+
+
+/**
+ * Consulta: ID de la última firma registrada
+ */
+$consultaIDUltimaFirma = "SELECT count(*) as 'ult_id' from firma;";
+
+
+/**
+ * Consulta: Vincular firma a funcionario
+ */
+$consultaVincularFirma = "INSERT INTO realiza(funcionario_ci, firma_id)
+values(:funcionario_ci, :firma_id);";
+
 // --- --- --- --- --- --- --- --- --- --- --- --- --- 
  ?>
