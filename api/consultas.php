@@ -18,7 +18,7 @@ AND
 firma_id IN
 (SELECT id from firma 
 where date(fechahora) = date())
-order by 3 DESC
+order by 2 DESC
 LIMIT 1;";
 
 /**

@@ -76,18 +76,27 @@
                 $resultado = $sentencia->execute();
                 
                 while ($datos_r = $resultado->fetchArray(SQLITE3_ASSOC)) {
+                    //var_dump($datos_r);
                     $firmaAnt->tipo = $datos_r["tipo"];
                     $firmaAnt->id = $datos_r["id"];
                 };
-            
+                /* echo($firmaAnt->tipo);
+                echo("----");
+                var_dump(strstr("entrada",$firmaAnt->tipo)); */
+                if (strstr("entrada",$firmaAnt->tipo)) {
+                    $firmaNueva->tipo = "salida";
+                    $firmaNueva->id_ant = $firmaAnt->id;
+                } 
+                
+
                 //Si el tipo de la firma anterior es 'entrada'....
-                if (strstr($firmaAnt->tipo,"entrada")) {
+                /*if (strcmp("$firmaAnt->tipo","entrada")) {
                     $firmaNueva->tipo = "salida";
                     $firmaNueva->id_ant = $firmaAnt->id;
                 }
                 else{
                     echo("No detecto el tipo de firma");
-                } 
+                }*/ 
 
                 
             }
@@ -105,11 +114,13 @@
                 $id_ultima_firma = $datos_r["ult_id"];
             };
 
+
             $firmaNueva->id = $id_ultima_firma;
+            //var_dump($firmaNueva);
             //Vincular la firma al funcionario
             $sentencia = $bdd->prepare($consultaVincularFirma);
             $sentencia->bindValue(":funcionario_ci",$ci_funcionario);
-            $sentencia->bindValue(":ult_id",$id_ultima_firma);
+            $sentencia->bindValue(":firma_id",$id_ultima_firma);
             $sentencia->execute();
 
 

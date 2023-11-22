@@ -19,6 +19,13 @@
     text-shadow: 0px 0px 3px rgba(0,0,0,0.9);
 }
 
+#div_reloj h4{
+    font-size: 5vh;
+    color: #075dad;
+    margin: 0px;
+    
+}
+
 #reloj_titulo{
     text-align: center;
 }
@@ -33,8 +40,40 @@
     width: 80%;
     font-size: 30px;
     text-align: center;
+    height: 50%;
+}
+
+#img_estado{
+    position: relative;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    background-size: 80px 80px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #mensajes{
     text-align: center;
+    
+}
+
+#mensajes #mensajeEstado{
+    font-size: 4vh;
+}
+
+#mensajes #mensajeTexto{
+    font-size: 3vh;
+}
+
+.firma_neutro{
+    background-image: none;
+}
+
+.firma_error{
+    background-image: url("../img/cerrar_error.png");
+}
+
+.firma_ok{
+    background-image: url("../img/ok.png");
 }
