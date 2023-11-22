@@ -1,0 +1,72 @@
+#encabezado{
+    height: 15%;
+    border-bottom: 1px solid white;
+}
+
+#titulo{
+    position: absolute;
+    width: 60%;
+    height: 40%;
+    left: 20%;
+    text-align: center;
+    
+}
+
+#titulo h1{
+    color: white;
+    margin: 0px;
+    font-size: 3.8vh;
+}
+
+#principal{
+    height: calc(85% - 1px);
+}
+
+#herramientas{
+    width: 250px;
+    left: -200px;
+    border-right: 1px solid lightgray;
+    transition: all 500ms;
+}
+
+#herramientas:hover{
+    left: 1px;
+}
+
+.herramienta{
+    height: 50px;
+    border-bottom: 1px solid lightgray;
+}
+
+.herramienta p{
+    position: relative;
+    height: 50%;
+    top: 25%;
+    margin: 0px;
+}
+
+.herramienta:hover{
+    background-color: white;
+    color: black;
+}
+
+.herramienta .descripcion{
+    width: calc(100% - 60px);
+    padding-left: 10px;
+}
+
+.herramienta .icono{
+    width: 50px;
+    background-color: white;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#admin_usuarios .icono{
+    background-image: url("../img/login.png");
+}
+
+#admin_registros .icono{
+    background-image: url("../img/file.png");
+}
