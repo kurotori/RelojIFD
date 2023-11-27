@@ -1,6 +1,17 @@
+#main{
+    position: relative;
+    width: 95%;
+    height: 95%;
+    left: 2.5%;
+    top: 2.5%;
+    background-color: white;
+    border-radius: 15px;
+    overflow-y: hidden;
+}
+
 #encabezado{
     height: 15%;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid lightgray;
 }
 
 #titulo{
@@ -13,7 +24,7 @@
 }
 
 #titulo h1{
-    color: white;
+    color: black;
     margin: 0px;
     font-size: 3.8vh;
 }
@@ -46,8 +57,9 @@
 }
 
 .herramienta:hover{
-    background-color: white;
-    color: black;
+    background-color:rgb(1, 156, 99);
+    color: white;
+    cursor: pointer;
 }
 
 .herramienta .descripcion{
