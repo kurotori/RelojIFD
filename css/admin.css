@@ -10,8 +10,8 @@
 }
 
 #encabezado{
-    height: 15%;
-    border-bottom: 1px solid lightgray;
+    height: 10%;
+    border-bottom: 5px solid lightgray;
 }
 
 #titulo{
@@ -30,14 +30,37 @@
 }
 
 #principal{
-    height: calc(85% - 1px);
+    height: calc(90% - 5px);
 }
 
 #herramientas{
+    position: absolute;
     width: 250px;
     left: -200px;
-    border-right: 1px solid lightgray;
+    border-right: 5px solid lightgray;
     transition: all 500ms;
+    background-color: white;
+}
+
+#contenido{
+    position: relative;
+    height: 100%;
+    left: 55px;
+    width: calc(100% - 55px);
+}
+
+#principal .listado{
+    position: relative;
+    width: calc(50% - 5px);
+}
+
+#func_presentes{
+    position: relative;
+    border-right: 5px solid lightgray;
+}
+
+#ultimas_firmas{
+    width: 50%;
 }
 
 #herramientas:hover{
@@ -81,4 +104,49 @@
 
 #admin_registros .icono{
     background-image: url("../img/file.png");
+}
+
+.listado .titulo{
+    height: 30px;
+    border-bottom: 5px solid lightgray;
+}
+
+.listado .titulo h2{
+    position: relative;
+    margin: 0px;
+    text-align: center;
+    font-size: 2.8vh;
+    top: calc((100% - 3vh) / 2);
+}
+
+#func_presentes .contenido{
+    height: calc(100% - 31px);
+    overflow-y: scroll;
+}
+
+
+
+#lista_func_presentes{
+    position: relative;
+    margin: 0px;
+    top: 5px;
+    padding: 0px;
+    list-style: none;
+}
+
+#lista_func_presentes li{
+    padding: 5px;
+    border-bottom: 1px dotted lightgrey;
+}
+
+#lista_func_presentes li:hover{
+    background-color: lightgrey;
+}
+
+#lista_func_presentes li p{
+    margin: 0px;
+}
+
+#lista_func_presentes li .funcionario{
+    font-weight: bold;
 }
