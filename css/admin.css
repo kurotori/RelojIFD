@@ -125,8 +125,7 @@
 }
 
 
-
-#lista_func_presentes{
+.lista_listado{
     position: relative;
     margin: 0px;
     top: 5px;
@@ -134,19 +133,35 @@
     list-style: none;
 }
 
-#lista_func_presentes li{
+.lista_listado li{
     padding: 5px;
     border-bottom: 1px dotted lightgrey;
 }
 
-#lista_func_presentes li:hover{
+.lista_listado li:hover{
     background-color: lightgrey;
 }
 
-#lista_func_presentes li p{
+.lista_listado li p{
     margin: 0px;
 }
 
-#lista_func_presentes li .funcionario{
+.lista_listado li .funcionario{
+    font-weight: bold;
+}
+
+.lista_listado li.entrada{
+    background-color: rgb(244, 201, 184);
+}
+
+.lista_listado li.salida{
+    background-color: rgb(197, 243, 197);
+}
+
+.lista_listado li .descripcion{
+    font-size: small;
+}
+
+.lista_listado li .descripcion .tipoFirma{
     font-weight: bold;
 }

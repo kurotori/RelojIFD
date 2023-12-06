@@ -7,7 +7,7 @@
 
     $datos = file_get_contents('php://input');
     $respuesta = new Respuesta();
-    
+    date_default_timezone_set('America/Montevideo');
     //Recibir CI
     if ( ! empty($datos) ) {
         $datosJSON = json_decode($datos);
@@ -50,6 +50,7 @@
                 $funcionario->apellido = $datos_r["apellido"];
             };
 
+            
             //Preparación de la firma nueva
             $firmaAnt = new Firma;
             $firmaAnt->id = 0;
@@ -57,9 +58,13 @@
             $firmaNueva = new Firma;
             $firmaNueva->id = 0;
             $firmaNueva->tipo = "entrada";
-            $firmaNueva->fechahora = date("Y-m-d h:i:s");
+            $firmaNueva->fechahora = date("Y-m-d H:i:s");
+
+            //var_dump($firmaNueva->fechahora);
+
 
             //Se buscan las últimas firmas del usuario en el día
+            
             $sentencia = $bdd->prepare($consultaConteoFirmasFunc);
             $sentencia->bindValue(":ci",$ci_funcionario,SQLITE3_INTEGER);
             $resultado = $sentencia->execute();
@@ -68,7 +73,7 @@
             while ($datos_r = $resultado->fetchArray(SQLITE3_ASSOC)) {
                 $cantF = $datos_r["conteo"];
             };
-
+            
             //Si el usuario ya ha realizado firmas en el día, chequeamos el tipo de la última
             if ($cantF > 0) {
                 $sentencia = $bdd->prepare("$consultaUltFirmaFunc");
@@ -101,6 +106,7 @@
                 
             }
             //Agregar firma
+            //var_dump($firmaNueva);
             $sentencia = $bdd->prepare($consultaInsertarFirma);
             $sentencia->bindValue(":tipo",$firmaNueva->tipo);
             $sentencia->bindValue(":fechahora",$firmaNueva->fechahora);

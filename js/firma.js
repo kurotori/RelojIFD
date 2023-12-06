@@ -9,7 +9,7 @@ const h4mensajeTexto = document.getElementById("mensajeTexto")
 
 const divImgEstado = document.getElementById("img_estado")
 
-const urlFirma = "http://localhost:3000/api/firmar.php"
+const urlFirma = "http://localhost/RelojIFD/api/firmar.php"
 
 reloj(divReloj)
 
