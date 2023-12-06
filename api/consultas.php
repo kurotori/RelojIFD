@@ -61,6 +61,9 @@ where ci=:ci;";
 $consultaFirmasDeHoy = "SELECT id from firma 
 where date(fechahora) = date();";
 
+$consultaFirmasDeHoyFull = "SELECT 
+";
+
 
 
 /**
