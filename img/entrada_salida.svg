@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   sodipodi:docname="entrada_salida.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showguides="true"
+     inkscape:zoom="0.59339234"
+     inkscape:cx="397.71325"
+     inkscape:cy="236.7742"
+     inkscape:window-width="1360"
+     inkscape:window-height="710"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#52ad52;fill-opacity:1;stroke:none;stroke-width:3;stroke-linejoin:round;stroke-dasharray:none"
+       id="circle7"
+       cx="99.82177"
+       cy="76.070877"
+       r="64.297157"
+       inkscape:export-filename="entrada_2.png"
+       inkscape:export-xdpi="101.13044"
+       inkscape:export-ydpi="101.13044" />
+    <g
+       id="g6"
+       transform="translate(0,20.637507)">
+      <g
+         id="g4">
+        <rect
+           style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-linejoin:round;stroke-dasharray:none"
+           id="rect1"
+           width="47.961506"
+           height="62.682045"
+           x="64.118347"
+           y="15.936456"
+           ry="0" />
+        <rect
+           style="fill:#000000;stroke:#000000;stroke-width:5.94604;stroke-linejoin:round;stroke-dasharray:none"
+           id="rect2"
+           width="33.91391"
+           height="62.682045"
+           x="90.677048"
+           y="-46.943108"
+           ry="0"
+           transform="matrix(0.7071067,0.70710686,0,1,0,0)" />
+      </g>
+      <path
+         id="path2"
+         style="fill:#ffffff;stroke:#008000;stroke-width:3;stroke-linejoin:round;stroke-dasharray:none"
+         inkscape:transform-center-x="3.6145186"
+         d="M 119.82357,34.756537 98.13652,47.277736 119.82357,59.79842 V 52.1994 h 22.66012 v -9.843844 h -22.66012 z"
+         sodipodi:nodetypes="cccccccc" />
+    </g>
+    <circle
+       style="fill:#ff8446;stroke:none;stroke-width:3;stroke-linejoin:round;stroke-dasharray:none;fill-opacity:1"
+       id="path7"
+       cx="99.82177"
+       cy="232.70284"
+       r="64.297157"
+       inkscape:export-filename="salida.png"
+       inkscape:export-xdpi="101.13044"
+       inkscape:export-ydpi="101.13044" />
+    <g
+       id="g7"
+       transform="translate(0.73213058,71.871148)">
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-linejoin:round;stroke-dasharray:none"
+         id="rect3"
+         width="47.961506"
+         height="62.682045"
+         x="66.220589"
+         y="121.88848"
+         ry="0" />
+      <rect
+         style="fill:#000000;stroke:#000000;stroke-width:5.94604;stroke-linejoin:round;stroke-dasharray:none"
+         id="rect4"
+         width="33.91391"
+         height="62.682045"
+         x="93.65007"
+         y="56.906677"
+         ry="0"
+         transform="matrix(0.7071067,0.70710686,0,1,0,0)" />
+      <path
+         id="path4"
+         style="fill:#ffffff;stroke:#ff0000;stroke-width:3;stroke-linejoin:round;stroke-dasharray:none"
+         inkscape:transform-center-x="-3.6145199"
+         d="m 120.79679,140.70856 21.68705,12.5212 -21.68705,12.52069 v -7.59902 H 98.136682 v -9.84385 h 22.660108 z"
+         sodipodi:nodetypes="cccccccc" />
+    </g>
+  </g>
+</svg>

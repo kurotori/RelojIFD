@@ -77,3 +77,11 @@
 .firma_ok{
     background-image: url("../img/ok.png");
 }
+
+.firma_entrada{
+    background-image: url("../img/entrada.png");
+}
+
+.firma_salida{
+    background-image: url("../img/salida.png");
+}

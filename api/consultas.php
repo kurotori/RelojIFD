@@ -61,7 +61,8 @@ where ci=:ci;";
 $consultaFirmasDeHoy = "SELECT id from firma 
 where date(fechahora) = date();";
 
-$consultaFirmasDeHoyFull = "SELECT 
+$consultaFirmasDeHoyFull = "SELECT id,tipo,fechahora,id_anterior
+from firma where date(fechahora) = date();
 ";
 
 

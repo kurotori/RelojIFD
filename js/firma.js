@@ -47,7 +47,7 @@ function prueba() {
         }
         if (res.respuesta.estado=="OK") {
           divImgEstado.classList.remove("firma_neutro")
-          divImgEstado.classList.add("firma_ok")
+          //divImgEstado.classList.add("firma_ok")
           const funcionario={}
           funcionario.nombre=res.respuesta.datos.funcionario.nombre
           funcionario.apellido=res.respuesta.datos.funcionario.apellido
@@ -55,9 +55,11 @@ function prueba() {
           
           if (funcionario.tipoFirma == "entrada") {
             saludo = "Hola, "
+            divImgEstado.classList.add("firma_entrada")
           }
           else{
             saludo = "Hasta luego, "
+            divImgEstado.classList.add("firma_salida")
           }
 
           h3mensajeEstado.innerText = saludo + funcionario.nombre + " " + funcionario.apellido
@@ -68,6 +70,8 @@ function prueba() {
         setTimeout(()=>{
           divImgEstado.classList.remove("firma_error")
           divImgEstado.classList.remove("firma_ok")
+          divImgEstado.classList.remove("firma_salida")
+          divImgEstado.classList.remove("firma_entrada")
           divImgEstado.classList.add("firma_neutro")
           h3mensajeEstado.innerText="Hola"
           h4mensajeTexto.innerText="Ingrese su CI sin puntos ni espacios"
