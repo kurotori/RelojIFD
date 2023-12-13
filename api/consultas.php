@@ -58,10 +58,30 @@ where ci=:ci;";
 /**
  * Consulta: Firmas del día de hoy en el sistema
  */
+$consultaFirmasDeHoyFull = "SELECT firma_id as 'id', funcionario_ci as 'ci',
+(SELECT funcionario.nombre from funcionario 
+where funcionario.ci=funcionario_ci) as 'nombre',
+(SELECT funcionario.apellido from funcionario 
+where funcionario.ci=funcionario_ci) as 'apellido',
+(SELECT firma.fechahora from firma 
+where firma.id=firma_id) as 'fechahora',
+(SELECT firma.tipo from firma 
+where firma.id=firma_id) as 'tipo',
+(SELECT firma.id_anterior from firma 
+where firma.id=firma_id) as 'id_anterior'
+from realiza
+where 
+firma_id in 
+(SELECT id from firma 
+where date(fechahora) = date())
+;";
+
 $consultaFirmasDeHoy = "SELECT id from firma 
 where date(fechahora) = date();";
 
-$consultaFirmasDeHoyFull = "SELECT id,tipo,fechahora,id_anterior
+$consultaFirmasDeHoyFull_vieja = "SELECT 
+id,tipo,fechahora,id_anterior,
+(select )
 from firma where date(fechahora) = date();
 ";
 

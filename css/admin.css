@@ -150,11 +150,11 @@
     font-weight: bold;
 }
 
-.lista_listado li.entrada{
+.lista_listado li.salida{
     background-color: rgb(244, 201, 184);
 }
 
-.lista_listado li.salida{
+.lista_listado li.entrada{
     background-color: rgb(197, 243, 197);
 }
 
