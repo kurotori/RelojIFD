@@ -59,6 +59,11 @@
     border-right: 5px solid lightgray;
 }
 
+#admin_func{
+    display: none;
+    width: 100%;
+}
+
 #ultimas_firmas{
     width: 50%;
 }
@@ -164,4 +169,15 @@
 
 .lista_listado li .descripcion .tipoFirma{
     font-weight: bold;
+}
+
+.botonera{
+    top: 5px;
+    border-bottom: 5px solid lightgray;
+    height: 50px;
+}
+
+.botonera button{
+    height: 45px;
+    width: calc((100% / 3) - 5px);
 }

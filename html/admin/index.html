@@ -8,7 +8,7 @@
     <title>IFD de Melo:Sistema de Registro de Asistencia de Funcionarios:Administración</title>
 </head>
 <body class="fondo2">
-
+    
     <div id="main">
         <div class="fila" id="encabezado">
             <div class="fila" id="titulo">
@@ -66,6 +66,17 @@
                     </div>
                 </div>
 
+                <div class="columna listado" id="admin_func">
+                    <div class="fila titulo">
+                        <h2>Administrar Funcionarios</h2>
+                    </div>
+                    <div class="fila botonera">
+                        <button>Registrar Funcionario</button>
+                        <button>Modificar Registro</button>
+                        <button>Eliminar Registro</button>
+                    </div>
+                </div>
+
             </div>
 
             
@@ -73,8 +84,14 @@
 
 
             <div class="columna" id="herramientas">
-                
-                <div class="herramienta" id="admin_usuarios">
+                <div class="herramienta" id="admin_inicio" onclick="AbrirInicio()">
+                    <div class="columna descripcion">
+                       <p>Página de Inicio</p>
+                    </div>
+                    <div class="columna icono"></div>
+                    
+                </div>
+                <div class="herramienta" id="admin_usuarios" onclick="AbrirAdminFuncionarios()">
                     <div class="columna descripcion">
                        <p>Administrar Funcionarios</p>
                     </div>
@@ -84,7 +101,7 @@
 
                 <div class="herramienta" id="admin_registros">
                     <div class="columna descripcion">
-                        <p>Ver Registro de Ingresos</p>
+                        <p>Registros de Ingreso</p>
                     </div>
                     <div class="columna icono"></div>
                 </div>

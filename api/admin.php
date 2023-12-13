@@ -46,7 +46,9 @@
                     array_push($respuesta->datos,$firma);
                 };
                 break;
-            
+            case '1':
+                
+                break;
             default:
                 # code...
                 break;

@@ -56,7 +56,7 @@ $consultaFuncExiste = "SELECT count(*) as conteo from funcionario
 where ci=:ci;";
 
 /**
- * Consulta: Firmas del día de hoy en el sistema
+ * Consulta: Firmas del día de hoy en el sistema con todos sus datos
  */
 $consultaFirmasDeHoyFull = "SELECT firma_id as 'id', funcionario_ci as 'ci',
 (SELECT funcionario.nombre from funcionario 
@@ -76,6 +76,9 @@ firma_id in
 where date(fechahora) = date())
 ;";
 
+/**
+ * Consulta: Firmas del día de hoy en el sistema, solo la ID
+ */
 $consultaFirmasDeHoy = "SELECT id from firma 
 where date(fechahora) = date();";
 
@@ -85,6 +88,12 @@ id,tipo,fechahora,id_anterior,
 from firma where date(fechahora) = date();
 ";
 
+/**
+ * 
+ * Consulta: Funcionarios presentes en este momento
+ */
+$consultaFuncPresentes = "
+";
 
 
 /**
