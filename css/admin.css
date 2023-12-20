@@ -72,6 +72,10 @@
     left: 1px;
 }
 
+.borde_gris_der_5px{
+    border-right: 5px solid lightgray;
+}
+
 .herramienta{
     height: 50px;
     border-bottom: 1px solid lightgray;
@@ -174,10 +178,41 @@
 .botonera{
     top: 5px;
     border-bottom: 5px solid lightgray;
-    height: 50px;
+    height: auto;
+    padding: 0px 5px 5px 5px;
+    width: calc(100% - 5px);
 }
 
 .botonera button{
     height: 45px;
     width: calc((100% / 3) - 5px);
+    font-weight: bold;
+}
+
+#menu_funcionario{
+    height: 0px;
+    transition: all 500ms;
+}
+
+.submenu{
+    width: calc(100% - 5px);
+    top: 5px;
+    padding: 5px;
+    display: none;
+    transition: all 1000ms;
+    border-top: 5px solid lightgray;
+}
+
+.submenu button{
+    font-weight: normal;
+}
+
+#registro_funcionario{
+    overflow: hidden;
+    height: 0px;
+    transition: all 500ms;
+}
+
+#form_reg_funcionario{
+    display: none;
 }

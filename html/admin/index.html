@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,18 @@
     <link rel="stylesheet" href="../../css/admin.css">
     <title>IFD de Melo:Sistema de Registro de Asistencia de Funcionarios:Administración</title>
 </head>
+
 <body class="fondo2">
-    
+
     <div id="main">
         <div class="fila" id="encabezado">
             <div class="fila" id="titulo">
                 <h1>
                     Sistema de Registro de Asistencia: Administración
                 </h1>
-                
+
             </div>
-    
+
         </div>
         <div class="fila" id="principal">
             <div class="columna" id="contenido">
@@ -40,14 +42,14 @@
                         <h2>Últimas Firmas Registradas</h2>
                     </div>
                     <div class="fila contenido" id="zona_ultimas_firmas">
-                        
+
                         <ul class="lista_listado" id="lista_ultimas_firmas">
-                            
+
                             <li class="entrada">
                                 <p class="funcionario">Fulano de tal</p>
                                 <p class="descripcion">
                                     <span class="tipoFirma">Salida</span>
-                                    a las 
+                                    a las
                                     <span class="horaEntrada">20:30</span>
                                 </p>
                             </li>
@@ -56,7 +58,7 @@
                                 <p class="funcionario">Fulano de tal</p>
                                 <p class="descripcion">
                                     <span class="tipoFirma">Salida</span>
-                                    a las 
+                                    a las
                                     <span class="horaEntrada">20:30</span>
                                 </p>
                             </li>
@@ -66,37 +68,79 @@
                     </div>
                 </div>
 
-                <div class="columna listado" id="admin_func">
+                <div class="columna listado borde_gris_der_5px" id="admin_func">
                     <div class="fila titulo">
                         <h2>Administrar Funcionarios</h2>
                     </div>
                     <div class="fila botonera">
-                        <button>Registrar Funcionario</button>
-                        <button>Modificar Registro</button>
-                        <button>Eliminar Registro</button>
+                        <button  onclick="abrirMenuFuncionarios('registro')">Registro de Funcionarios</button>
+                        <button>Búsqueda de Funcionarios</button>
+
+                        <div class="fila" id="menu_funcionario">
+                            <div class="fila submenu" id="menu_registro">
+                                <button onclick="abrirFormularioRegistro('uno')">Registrar Funcionario</button>
+                                <button onclick="abrirFormularioRegistro('archivo')">Registro con archivo</button>
+                            </div>
+                            <div class="fila submenu" id="menu_busqueda">
+
+                            </div>
+                            
+                        </div>
+                        <div class="fila" id="registro_funcionario">
+                            <form id="form_reg_funcionario">
+                                <h4>Nuevo Funcionario</h4>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label for="nombre_funcionario">Nombre:</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="nombre_funcionario" id="nombre_funcionario">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="apellido_funcionario">Apellido:</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="apellido_funcionario" id="apellido_funcionario">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="ci_funcionario">CI:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="ci_funcionario" id="ci_funcionario">
+                                        </td>
+                                    </tr>
+                                </table>                                
+                            </form>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
 
-            
+
 
 
 
             <div class="columna" id="herramientas">
                 <div class="herramienta" id="admin_inicio" onclick="AbrirInicio()">
                     <div class="columna descripcion">
-                       <p>Página de Inicio</p>
+                        <p>Página de Inicio</p>
                     </div>
                     <div class="columna icono"></div>
-                    
+
                 </div>
                 <div class="herramienta" id="admin_usuarios" onclick="AbrirAdminFuncionarios()">
                     <div class="columna descripcion">
-                       <p>Administrar Funcionarios</p>
+                        <p>Administrar Funcionarios</p>
                     </div>
                     <div class="columna icono"></div>
-                    
+
                 </div>
 
                 <div class="herramienta" id="admin_registros">
@@ -124,8 +168,9 @@
         </div>
     </div>
 
-    
+
 </body>
 <script src="../../js/funciones.js"></script>
 <script src="../../js/admin.js"></script>
+
 </html>
