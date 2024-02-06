@@ -4,5 +4,6 @@
 
 **Nota**
 Usa íconos de la plataforma [Flaticon](https://flaticon.com) diseñados por:
+- Freepik
 - Mehwish
 - Arkinasi

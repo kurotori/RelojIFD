@@ -9,6 +9,7 @@ const divMenu_registro = document.getElementById('menu_registro')
 const claseSubMenu= Array.from(document.getElementsByClassName('submenu'))
 const divRegistroFuncionario = document.getElementById('registro_funcionario')
 const formRegistroFuncionario = document.getElementById('form_reg_funcionario')
+const pMensajeDeErrorForm = document.getElementById("errorFormRegistroFuncionario")
 
 
 const urlApiAdmin="http://localhost/RelojIFD/api/admin.php"
@@ -173,7 +174,7 @@ function abrirMenuFuncionarios(modo) {
 
 function abrirFormularioRegistro(modo) {
     if (divRegistroFuncionario.style.height=='0px') {
-        divRegistroFuncionario.style.height='160px'
+        divRegistroFuncionario.style.height='220px'
         switch (modo) {
             case 'uno':
                 formRegistroFuncionario.style.display='block'
@@ -189,4 +190,17 @@ function abrirFormularioRegistro(modo) {
 }
 
 
+function registrarFuncionario() {
+    const datosConsulta = {}
+    datosConsulta.modo = 0;
+
+    if ( chequearFormulario(formRegistroFuncionario) ) {
+        
+    }
+    else{
+        pMensajeDeErrorForm.innerText = "ERROR: Deben completarse todos los campos"
+    }
+
+
+}
 

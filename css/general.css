@@ -25,3 +25,14 @@ html, body{
     background: rgb(255,255,255);
     background: linear-gradient( rgb(1, 156, 99),rgba(255,255,255,1));
 }
+
+.campoError{
+    border: 2px solid red;
+}
+
+.errorForm{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}

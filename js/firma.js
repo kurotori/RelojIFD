@@ -36,14 +36,18 @@ function prueba() {
           divImgEstado.classList.remove("firma_neutro")
           divImgEstado.classList.add("firma_error")
           h3mensajeEstado.innerText = res.respuesta.estado
-          switch (res.respuesta.datos) {
+          
+          textoError = analizarError(res.respuesta.datos)
+          h4mensajeTexto.innerText = textoError.replace(":funcionario_ci",funcionario.ci)
+       
+          /*switch (res.respuesta.datos) {
             case "E1":
               h4mensajeTexto.innerText = "La CI ingresada ("+funcionario.ci+") no existe en el sistema"
               break;
           
             default:
               break;
-          }
+          }*/
         }
         if (res.respuesta.estado=="OK") {
           divImgEstado.classList.remove("firma_neutro")

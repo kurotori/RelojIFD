@@ -115,6 +115,10 @@
     background-image: url("../img/file.png");
 }
 
+#admin_inicio .icono{
+    background-image: url("../img/home.png");
+}
+
 .listado .titulo{
     height: 30px;
     border-bottom: 5px solid lightgray;
@@ -215,4 +219,38 @@
 
 #form_reg_funcionario{
     display: none;
+    width: 75%;
+    position: relative;
+    left: 12.5%;
+}
+
+#form_reg_funcionario table{
+    width: 100%;
+}
+
+#form_reg_funcionario table tr :first-child{
+    width: 25%;
+}
+
+#form_reg_funcionario table tr :last-child{
+    width: 75%;
+}
+
+
+#btn_reg_funcionario{
+    height: 30px;
+    width: 20%;
+    left: 40%;
+    position: relative;
+    top: 10px;
+}
+
+#menu_registro button{
+    background-color: rgb(255, 182, 168);
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+#menu_registro button:hover{
+    background-color: darksalmon;
 }

@@ -73,8 +73,8 @@
                         <h2>Administrar Funcionarios</h2>
                     </div>
                     <div class="fila botonera">
-                        <button  onclick="abrirMenuFuncionarios('registro')">Registro de Funcionarios</button>
-                        <button>Búsqueda de Funcionarios</button>
+                        <button  onclick="abrirMenuFuncionarios('registro')">Registro</button>
+                        <button>Búsqueda</button>
 
                         <div class="fila" id="menu_funcionario">
                             <div class="fila submenu" id="menu_registro">
@@ -95,7 +95,7 @@
                                             <label for="nombre_funcionario">Nombre:</label>
                                         </td>
                                         <td>
-                                            <input type="text" name="nombre_funcionario" id="nombre_funcionario">
+                                            <input type="text" class="requerido" name="nombre_funcionario" id="nombre_funcionario">
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,7 +103,7 @@
                                             <label for="apellido_funcionario">Apellido:</label>
                                         </td>
                                         <td>
-                                            <input type="text" name="apellido_funcionario" id="apellido_funcionario">
+                                            <input type="text" class="requerido" name="apellido_funcionario" id="apellido_funcionario">
                                         </td>
                                     </tr>
                                     <tr>
@@ -111,11 +111,13 @@
                                             <label for="ci_funcionario">CI:</label>
                                         </td>
                                         <td>
-                                            <input type="number" name="ci_funcionario" id="ci_funcionario">
+                                            <input type="number" class="requerido" name="ci_funcionario" id="ci_funcionario">
                                         </td>
                                     </tr>
                                 </table>                                
                             </form>
+                            <button id="btn_reg_funcionario">Registrar</button>
+                            <p id="errorFormRegistroFuncionario" class="errorForm"></p>
                         </div>
 
                     </div>

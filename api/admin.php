@@ -2,7 +2,7 @@
     include_once "clases.php";
     include_once "funciones.php";
     include_once "consultas.php";
-
+    include_once "funciones_bd.php";
 
     $modo=0;
     
@@ -20,8 +20,9 @@
 
         /**
          * Modos:
-         * 0: Últimas firmas registradas
-         * 1: Funcionarios presentes
+         * 0: Últimas firmas registradas y Funcionarios presentes
+         * 1: Registro de funcionario (uno)
+         * 2: Registro de funcionarios (por archivo)
          */
         switch ($modo) {
             case '0':
@@ -47,7 +48,23 @@
                 };
                 break;
             case '1':
-                
+                //Registrar funcionario (uno)
+                $funcionario = new Funcionario();
+
+                $funcionario->ci = $datosJSON->datos->ci;
+
+                $datos = $datosJSON->modo;
+
+                if ( ! funcionarioExiste($funcionario->ci)) {
+                    
+                }
+                else{
+                    $respuesta->estado = "ERROR";
+                    $respuesta->datos = array();
+                }
+
+
+
                 break;
             default:
                 # code...
@@ -58,4 +75,6 @@
 
         $bdd->close();
     }
+
+
  ?>

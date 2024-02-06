@@ -116,5 +116,11 @@ $consultaIDUltimaFirma = "SELECT count(*) as 'ult_id' from firma;";
 $consultaVincularFirma = "INSERT INTO realiza(funcionario_ci, firma_id)
 values(:funcionario_ci, :firma_id);";
 
+
+
+
+
+
+
 // --- --- --- --- --- --- --- --- --- --- --- --- --- 
  ?>
