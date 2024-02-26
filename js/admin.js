@@ -192,10 +192,28 @@ function abrirFormularioRegistro(modo) {
 
 function registrarFuncionario() {
     const datosConsulta = {}
-    datosConsulta.modo = 0;
+    
 
     if ( chequearFormulario(formRegistroFuncionario) ) {
+        //console.log("form bien")
+        datosConsulta.modo = 1;
+        datosConsulta.ci = formRegistroFuncionario.getElementsByTagName("input").ci_funcionario.value
+        datosConsulta.nombre = formRegistroFuncionario.getElementsByTagName("input").nombre_funcionario.value
+        datosConsulta.apellido = formRegistroFuncionario.getElementsByTagName("input").apellido_funcionario.value
         
+        enviarAlServidor(datosConsulta,urlApiAdmin).
+            then(res=>{
+
+                if (res.respuesta.estado=="ERROR") {
+                    textoError = analizarError(res.respuesta.datos)
+                    textoError = textoError.replace(":funcionario_ci",datosConsulta.ci)
+                    console.log(textoError)
+                    pMensajeDeErrorForm.innerText = "ERROR: "+textoError
+                }
+                else{
+                    alert(res.respuesta.datos)
+                }
+            })
     }
     else{
         pMensajeDeErrorForm.innerText = "ERROR: Deben completarse todos los campos"

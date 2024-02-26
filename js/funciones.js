@@ -38,6 +38,7 @@ function chequearFormulario(formulario) {
     cuentaError = 0
 
     listaCampos.forEach(campo => {
+        campo.classList.remove("campoError")
         if (campo.classList.contains("requerido")) {
             console.log(campo)
             if (campo.value.length < 1) {

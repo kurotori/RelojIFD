@@ -3,7 +3,7 @@
      * 
      */
     function funcionarioExiste($ci_funcionario){
-        $resultado = false;
+        $respuesta = false;
 
         $consultaFuncExiste = "SELECT count(*) as conteo from funcionario where ci=:ci;";
 
@@ -18,10 +18,35 @@
         };
 
         if ($cantU == 1) {
-            $resultado = true;
+            $respuesta = true;
         }
 
-        return $resultado;
+        $bdd->close();
+        return $respuesta;
         
+    }
+
+    /**
+     * 
+     */
+    function registrarFuncionario(Funcionario $funcionario){
+        $respuesta = false;
+
+        $consultaNuevoFunc = "INSERT into funcionario(ci,nombre,apellido) values (:ci, :nombre, :apellido)";
+
+        $bdd = new SQLite3("../db/reloj.db");
+        $sentencia = $bdd->prepare($consultaNuevoFunc);
+        $sentencia->bindValue(":ci",$funcionario->ci,SQLITE3_INTEGER);
+        $sentencia->bindValue(":nombre",$funcionario->nombre,SQLITE3_TEXT);
+        $sentencia->bindValue(":apellido",$funcionario->apellido,SQLITE3_TEXT);
+        $sentencia->execute();
+
+        if ($bdd->changes() > 0) {
+            $respuesta = $bdd->lastErrorMsg();
+        }
+
+        $bdd->close();
+        return $bdd->lastErrorMsg();//$respuesta;
+
     }
  ?>

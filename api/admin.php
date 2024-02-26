@@ -50,19 +50,31 @@
             case '1':
                 //Registrar funcionario (uno)
                 $funcionario = new Funcionario();
-
-                $funcionario->ci = $datosJSON->datos->ci;
-
-                $datos = $datosJSON->modo;
+                //print_r($datosJSON);
+                $funcionario->ci = $datosJSON->ci;
+  
+                //$datos = $datosJSON->modo;
 
                 if ( ! funcionarioExiste($funcionario->ci)) {
+                    $funcionario->nombre = $datosJSON->nombre;
+                    $funcionario->apellido = $datosJSON->apellido;
                     
+                    $registro = registrarFuncionario($funcionario);
+                    
+                    if($registro){
+                        $respuesta->estado = "OK";
+                        $respuesta->datos = "El funcionario $funcionario->ci fue registrado con éxito";
+                    }
+                    else{
+                        $respuesta->estado = "ERROR";
+                        $respuesta->datos = "No fue posible registrar al usuario: ".$bdd->lastErrorMsg();
+                    }
                 }
                 else{
                     $respuesta->estado = "ERROR";
-                    $respuesta->datos = array();
+                    $respuesta->datos = "E2";
                 }
-
+                
 
 
                 break;
