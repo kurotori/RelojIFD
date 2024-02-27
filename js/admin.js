@@ -1,3 +1,5 @@
+
+const divHerramientas = document.getElementById('herramientas')
 const divFuncPresentes = document.getElementById('func_presentes')
 const divUltimasFirmas = document.getElementById('ultimas_firmas')
 const divAdminFunc = document.getElementById('admin_func')
@@ -9,7 +11,9 @@ const divMenu_registro = document.getElementById('menu_registro')
 const claseSubMenu= Array.from(document.getElementsByClassName('submenu'))
 const divRegistroFuncionario = document.getElementById('registro_funcionario')
 const formRegistroFuncionario = document.getElementById('form_reg_funcionario')
+const formRegistroMasivo = document.getElementById('form_reg_masivo')
 const pMensajeDeErrorForm = document.getElementById("errorFormRegistroFuncionario")
+const inptArchivoReg = document.getElementById('archivo_reg')
 
 
 const urlApiAdmin="http://localhost/RelojIFD/api/admin.php"
@@ -18,6 +22,13 @@ divMenuFuncionario.style.height='0px'
 divRegistroFuncionario.style.height='0px'
 
 const firmas = {}
+
+let modoReg = 0
+
+//const arrHerramientas = Array.from(document.getElementsByClassName('herramienta'))
+//arrHerramientas.forEach(herramienta => {
+   // herramienta.addEventListener("click",cerrarHerHerramientas)
+//});
 
 obtenerFirmasTodas()
 
@@ -139,17 +150,26 @@ function obtenerFuncionariosPresentes() {
 
 }
 
+function cerrarHerHerramientas() {
+    divHerramientas.style.left = "-200px"
+    console.log("cerrar")
+}
+
+
+
 
 function AbrirAdminFuncionarios() {
     divFuncPresentes.style.display="none"
     divUltimasFirmas.style.display="none"
     divAdminFunc.style.display="block"
+    //setTimeout(cerrarHerHerramientas,500)
 }
 
 function AbrirInicio() {
     divFuncPresentes.style.display="block"
     divUltimasFirmas.style.display="block"
     divAdminFunc.style.display="none"
+    //setTimeout(cerrarHerHerramientas,500)
 }
 
 function abrirMenuFuncionarios(modo) {
@@ -173,13 +193,20 @@ function abrirMenuFuncionarios(modo) {
 
 
 function abrirFormularioRegistro(modo) {
+    pMensajeDeErrorForm.innerText = ""
     if (divRegistroFuncionario.style.height=='0px') {
         divRegistroFuncionario.style.height='220px'
         switch (modo) {
             case 'uno':
                 formRegistroFuncionario.style.display='block'
+                formRegistroMasivo.style.display='none'
+                modoReg = 1
                 break;
-        
+            case 'archivo':
+                formRegistroFuncionario.style.display='none'
+                formRegistroMasivo.style.display='block'
+                modoReg = 2
+                break;
             default:
                 break;
         }
@@ -190,34 +217,88 @@ function abrirFormularioRegistro(modo) {
 }
 
 
-function registrarFuncionario() {
-    const datosConsulta = {}
+function registrarFuncionario(modo) {
     
+    console.log(modo)
+    const datosConsulta = {}
+    switch (modo) {
+        case 1:
+            
 
-    if ( chequearFormulario(formRegistroFuncionario) ) {
-        //console.log("form bien")
-        datosConsulta.modo = 1;
-        datosConsulta.ci = formRegistroFuncionario.getElementsByTagName("input").ci_funcionario.value
-        datosConsulta.nombre = formRegistroFuncionario.getElementsByTagName("input").nombre_funcionario.value
-        datosConsulta.apellido = formRegistroFuncionario.getElementsByTagName("input").apellido_funcionario.value
-        
-        enviarAlServidor(datosConsulta,urlApiAdmin).
-            then(res=>{
+            if ( chequearFormulario(formRegistroFuncionario) ) {
+                //console.log("form bien")
+                datosConsulta.modo = 1;
+                datosConsulta.ci = formRegistroFuncionario.getElementsByTagName("input").ci_funcionario.value
+                datosConsulta.nombre = formRegistroFuncionario.getElementsByTagName("input").nombre_funcionario.value
+                datosConsulta.apellido = formRegistroFuncionario.getElementsByTagName("input").apellido_funcionario.value
+                
+                enviarAlServidor(datosConsulta,urlApiAdmin).
+                    then(res=>{
 
-                if (res.respuesta.estado=="ERROR") {
-                    textoError = analizarError(res.respuesta.datos)
-                    textoError = textoError.replace(":funcionario_ci",datosConsulta.ci)
-                    console.log(textoError)
-                    pMensajeDeErrorForm.innerText = "ERROR: "+textoError
+                        if (res.respuesta.estado=="ERROR") {
+                            textoError = analizarError(res.respuesta.datos)
+                            textoError = textoError.replace(":funcionario_ci",datosConsulta.ci)
+                            console.log(textoError)
+                            pMensajeDeErrorForm.innerText = "ERROR: "+textoError
+                        }
+                        else{
+                            alert(res.respuesta.datos)
+                            pMensajeDeErrorForm.innerText = ""
+                        }
+                    })
+            }
+            else {
+                pMensajeDeErrorForm.innerText = "ERROR: Deben completarse todos los campos"
+            }
+
+            break;
+
+        case 2:
+            //console.log("probando")
+            const archivo = inptArchivoReg.files[0]
+            //console.log(archivo)
+            let funcionarios = []
+
+            const r = Papa.parse(archivo, {
+                complete: function(results) {
+                    //Procesando y preparando registros para enviarse
+                    results.data.shift()
+                    results.data.forEach(registro => {
+                        if (registro.length == 3) {
+                            const funcionario = {}
+
+                            funcionario.nombre = registro[0]
+                            funcionario.apellido = registro[1]
+                            funcionario.ci = registro[2]
+                            
+                            //console.log(funcionario)
+                            funcionarios.push(funcionario)
+                        } else {
+                            console.log("registro mal formado")
+                        }
+                        
+                    });
+
+                    console.log(funcionarios)
+
+                    datosConsulta.modo = 2
+                    datosConsulta.datos = funcionarios
+
+                    enviarAlServidor(datosConsulta,urlApiAdmin).
+                    then(res=>{
+
+                        console.log(res)
+                    })
+
+
                 }
-                else{
-                    alert(res.respuesta.datos)
-                }
-            })
+            });
+            
+            break;
+        default:
+            break;
     }
-    else{
-        pMensajeDeErrorForm.innerText = "ERROR: Deben completarse todos los campos"
-    }
+    
 
 
 }

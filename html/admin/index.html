@@ -116,7 +116,12 @@
                                     </tr>
                                 </table>                                
                             </form>
-                            <button id="btn_reg_funcionario" onclick="registrarFuncionario()">Registrar</button>
+                            <form id="form_reg_masivo">
+                                <h4>Registro masivo mediante archivo</h4>
+                                <label for="archivo_reg">Archivo con datos:</label>
+                                <input type="file" name="archivo_reg" id="archivo_reg">
+                            </form>
+                            <button id="btn_reg_funcionario" onclick="registrarFuncionario(modoReg)">Registrar</button>
                             <p id="errorFormRegistroFuncionario" class="errorForm"></p>
                         </div>
 
@@ -173,6 +178,7 @@
 
 </body>
 <script src="../../js/funciones.js"></script>
+<script src="../../js/papaparse.js"></script>
 <script src="../../js/admin.js"></script>
 
 </html>

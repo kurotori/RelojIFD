@@ -237,6 +237,13 @@
 }
 
 
+#form_reg_masivo{
+    display: none;
+    width: 75%;
+    position: relative;
+    left: 12.5%;
+}
+
 #btn_reg_funcionario{
     height: 30px;
     width: 20%;

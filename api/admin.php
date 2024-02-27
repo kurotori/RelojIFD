@@ -78,6 +78,28 @@
 
 
                 break;
+            case '2':
+                //print_r($datosJSON->datos);
+                $respuesta->datos= new stdClass;
+                $respuesta->datos->errores=0;
+
+                foreach ($datosJSON->datos as $dFuncionario) {
+                    $funcionario = new Funcionario();
+                    $funcionario->ci = $dFuncionario->ci;
+
+                    if ( ! funcionarioExiste($funcionario->ci)) {
+                        $funcionario->nombre = $dFuncionario->nombre;
+                        $funcionario->apellido = $dFuncionario->apellido;
+                    }
+                    else{
+                        $respuesta->datos->errores+=1;
+                        //print("CI $funcionario->ci ya esta registrada");
+                    }
+
+                    
+                    //print_r($funcionario);
+                }
+                break;
             default:
                 # code...
                 break;

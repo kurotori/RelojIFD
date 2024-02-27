@@ -32,7 +32,7 @@
     function registrarFuncionario(Funcionario $funcionario){
         $respuesta = false;
 
-        $consultaNuevoFunc = "INSERT into funcionario(ci,nombre,apellido) values (:ci, :nombre, :apellido)";
+        $consultaNuevoFunc = "INSERT into funcionario(ci, nombre, apellido) values (:ci, :nombre, :apellido);";
 
         $bdd = new SQLite3("../db/reloj.db");
         $sentencia = $bdd->prepare($consultaNuevoFunc);
@@ -42,11 +42,11 @@
         $sentencia->execute();
 
         if ($bdd->changes() > 0) {
-            $respuesta = $bdd->lastErrorMsg();
+            $respuesta = true;
         }
 
         $bdd->close();
-        return $bdd->lastErrorMsg();//$respuesta;
+        return $respuesta;
 
     }
  ?>
