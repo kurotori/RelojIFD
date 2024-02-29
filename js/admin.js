@@ -3,8 +3,10 @@ const divHerramientas = document.getElementById('herramientas')
 const divFuncPresentes = document.getElementById('func_presentes')
 const divUltimasFirmas = document.getElementById('ultimas_firmas')
 const divAdminFunc = document.getElementById('admin_func')
+const divAdminFuncResultados = document.getElementById('admin_func_resultados')
 const ulListaFuncPresentes = document.getElementById("lista_func_presentes")
 const ullistaUltimasFirmas = document.getElementById("lista_ultimas_firmas")
+const ullistaFuncResultados = document.getElementById("lista_func_resultados")
 const spanNumFuncPresentes = document.getElementById('num_func_presentes')
 const divMenuFuncionario = document.getElementById('menu_funcionario')
 const divMenu_registro = document.getElementById('menu_registro')
@@ -37,6 +39,10 @@ obtenerFirmasTodas()
 /** Permite limpiar las listas de la página
  * 
  */
+function limpiarLista(lista) {
+    lista.innerHTML=""
+}
+
 function limpiarListas() {
     ulListaFuncPresentes.innerHTML=""
     ullistaUltimasFirmas.innerHTML=""
@@ -162,6 +168,8 @@ function AbrirAdminFuncionarios() {
     divFuncPresentes.style.display="none"
     divUltimasFirmas.style.display="none"
     divAdminFunc.style.display="block"
+    divAdminFuncResultados.style.display="block"
+    //limpiarLista(ullistaFuncResultados)
     //setTimeout(cerrarHerHerramientas,500)
 }
 
@@ -169,6 +177,7 @@ function AbrirInicio() {
     divFuncPresentes.style.display="block"
     divUltimasFirmas.style.display="block"
     divAdminFunc.style.display="none"
+    divAdminFuncResultados.style.display="none"
     //setTimeout(cerrarHerHerramientas,500)
 }
 
@@ -274,7 +283,7 @@ function registrarFuncionario(modo) {
                             //console.log(funcionario)
                             funcionarios.push(funcionario)
                         } else {
-                            console.log("registro mal formado")
+                            //console.log("registro mal formado")
                         }
                         
                     });
@@ -288,6 +297,18 @@ function registrarFuncionario(modo) {
                     then(res=>{
 
                         console.log(res)
+
+                        const liTarea = document.createElement('li')
+                        const pTarea = document.createElement('p')
+                        pTarea.classList.add('resultado')
+                        pTarea.innerText = res.respuesta.tarea
+
+                        const pDescripcion = document.createElement('p')
+                        pDescripcion
+                        liTarea.append(pTarea)
+
+                        ullistaFuncResultados.append(liTarea)
+
                     })
 
 

@@ -64,6 +64,11 @@
     width: 100%;
 }
 
+#admin_func{
+    display: none;
+
+}
+
 #ultimas_firmas{
     width: 50%;
 }
@@ -160,6 +165,10 @@
 }
 
 .lista_listado li .funcionario{
+    font-weight: bold;
+}
+
+.lista_listado li .resultado{
     font-weight: bold;
 }
 

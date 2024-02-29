@@ -52,7 +52,7 @@
                 $funcionario = new Funcionario();
                 //print_r($datosJSON);
                 $funcionario->ci = $datosJSON->ci;
-  
+                $respuesta->tarea = "Registro de un funcionario";
                 //$datos = $datosJSON->modo;
 
                 if ( ! funcionarioExiste($funcionario->ci)) {
@@ -80,8 +80,14 @@
                 break;
             case '2':
                 //print_r($datosJSON->datos);
+                //Preparamos la respuesta para almacenar un detalle de los errores
+                $respuesta->tarea = "Registro masivo de funcionarios";
                 $respuesta->datos= new stdClass;
+                $respuesta->estado = "OK";
                 $respuesta->datos->errores=0;
+                $respuesta->datos->ci_errores=array();
+                $respuesta->datos->registros=0;
+
 
                 foreach ($datosJSON->datos as $dFuncionario) {
                     $funcionario = new Funcionario();
@@ -90,10 +96,22 @@
                     if ( ! funcionarioExiste($funcionario->ci)) {
                         $funcionario->nombre = $dFuncionario->nombre;
                         $funcionario->apellido = $dFuncionario->apellido;
+                        
+                        $registro = registrarFuncionario($funcionario);
+                    
+                        if($registro){
+                            $respuesta->datos->registros += 1;
+                        }
+                        else{
+                            $respuesta->estado = "ERROR";
+                            $respuesta->datos->errores+=1;
+                            array_push($respuesta->datos->ci_errores,$funcionario->ci);
+                        }
+
                     }
                     else{
                         $respuesta->datos->errores+=1;
-                        //print("CI $funcionario->ci ya esta registrada");
+                        array_push($respuesta->datos->ci_errores,$funcionario->ci);
                     }
 
                     
