@@ -169,7 +169,7 @@ function AbrirAdminFuncionarios() {
     divUltimasFirmas.style.display="none"
     divAdminFunc.style.display="block"
     divAdminFuncResultados.style.display="block"
-    //limpiarLista(ullistaFuncResultados)
+    limpiarLista(ullistaFuncResultados)
     //setTimeout(cerrarHerHerramientas,500)
 }
 
@@ -233,7 +233,6 @@ function registrarFuncionario(modo) {
     switch (modo) {
         case 1:
             
-
             if ( chequearFormulario(formRegistroFuncionario) ) {
                 //console.log("form bien")
                 datosConsulta.modo = 1;
@@ -265,6 +264,7 @@ function registrarFuncionario(modo) {
         case 2:
             //console.log("probando")
             const archivo = inptArchivoReg.files[0]
+            let erroresArch = 0
             //console.log(archivo)
             let funcionarios = []
 
@@ -279,37 +279,94 @@ function registrarFuncionario(modo) {
                             funcionario.nombre = registro[0]
                             funcionario.apellido = registro[1]
                             funcionario.ci = registro[2]
-                            
-                            //console.log(funcionario)
                             funcionarios.push(funcionario)
+                            /* if (typeof funcionario.nombre === "string") {
+                                if (typeof funcionario.apellido === "string") {
+                                    if (typeof funcionario.ci === "bigint") {
+                                        funcionarios.push(funcionario)
+                                    }
+                                    else{
+                                        erroresArch++
+                                        console.log("error en ci")
+                                        console.log(typeof funcionario.ci)
+                                    }
+                                }
+                                else{
+                                    erroresArch++
+                                    console.log("error en apellido")
+                                }
+                            }
+                            else{
+                                erroresArch++
+                                console.log("error en nombre")
+                            }
+                            //console.log(funcionario) */
+                            
                         } else {
                             //console.log("registro mal formado")
                         }
                         
                     });
 
-                    console.log(funcionarios)
+                    //console.log(funcionarios)
+                    if (erroresArch < 1 ) {
+                        datosConsulta.modo = 2
+                        datosConsulta.datos = funcionarios
 
-                    datosConsulta.modo = 2
-                    datosConsulta.datos = funcionarios
+                        enviarAlServidor(datosConsulta,urlApiAdmin).
+                        then(res=>{
 
-                    enviarAlServidor(datosConsulta,urlApiAdmin).
-                    then(res=>{
+                            console.log(res)
 
-                        console.log(res)
+                            const liTarea = document.createElement('li')
+                            const pTarea = document.createElement('p')
+                            pTarea.classList.add('resultado')
+                            pTarea.innerText = res.respuesta.tarea
+                            liTarea.append(pTarea)
+                            
+                            const pRegistros = document.createElement('p')
+                            pRegistros.classList.add('descripcion')
+                            pRegistros.innerText = "Registros Correctos: " + res.respuesta.datos.registros
+                            liTarea.append(pRegistros)
+                            
+                            if (res.respuesta.datos.errores > 0) {
+                                const pErrores = document.createElement('p')
+                                pErrores.classList.add('descripcion')
+                                pErrores.innerText = "Errores de Registro: " + res.respuesta.datos.errores
+                                liTarea.append(pErrores)
+                                const pListaErrores = document.createElement('p')
+                                pListaErrores.classList.add('descripcion')
+                                pListaErrores.innerText = "No fue posible registrar los funcionarios con las siguientes CI:"
+                                liTarea.append(pListaErrores)
+                                res.respuesta.datos.ci_errores.forEach(ci => {
+                                    const pCi = document.createElement('p')
+                                    pCi.classList.add('descripcion')
+                                    pCi.innerHTML = "&nbsp;&nbsp; - &nbsp;" + ci.ci + ": &nbsp;" + ci.causa
+                                    liTarea.append(pCi)
+                                });
+                            }
+                            ullistaFuncResultados.append(liTarea)
 
+                        })
+                    }
+                    else{
                         const liTarea = document.createElement('li')
                         const pTarea = document.createElement('p')
                         pTarea.classList.add('resultado')
-                        pTarea.innerText = res.respuesta.tarea
-
-                        const pDescripcion = document.createElement('p')
-                        pDescripcion
+                        pTarea.innerText = "Registro Masivo de Funcionarios"
                         liTarea.append(pTarea)
-
+                        
+                        const pE1 = document.createElement('p')
+                        pE1.classList.add('descripcion')
+                        pE1.innerText = "Error: El archivo esta formateado de forma incorrecta."
+                        const pE2 = document.createElement('p')
+                        pE2.classList.add('descripcion')
+                        pE2.innerText = "Verifique que el contenido del mismo se ajusta al del archivo de ejemplo."
+                        liTarea.append(pE1)
+                        liTarea.append(pE2)
                         ullistaFuncResultados.append(liTarea)
-
-                    })
+                    }
+                    
 
 
                 }

@@ -91,6 +91,7 @@
 
                 foreach ($datosJSON->datos as $dFuncionario) {
                     $funcionario = new Funcionario();
+
                     $funcionario->ci = $dFuncionario->ci;
 
                     if ( ! funcionarioExiste($funcionario->ci)) {
@@ -103,15 +104,22 @@
                             $respuesta->datos->registros += 1;
                         }
                         else{
+                            $error = new stdClass;
                             $respuesta->estado = "ERROR";
                             $respuesta->datos->errores+=1;
-                            array_push($respuesta->datos->ci_errores,$funcionario->ci);
+                            $error->ci = $funcionario->ci;
+                            $error->causa = "Falla del sistema: $bdd->lastErrorMsg()";
+
+                            array_push($respuesta->datos->ci_errores,$error);
                         }
 
                     }
                     else{
+                        $error = new stdClass;
                         $respuesta->datos->errores+=1;
-                        array_push($respuesta->datos->ci_errores,$funcionario->ci);
+                        $error->ci = $funcionario->ci;
+                        $error->causa = "El funcionario ya esta registrado";
+                        array_push($respuesta->datos->ci_errores,$error);
                     }
 
                     
